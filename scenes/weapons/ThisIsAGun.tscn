@@ -1,18 +1,22 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/items/ThisIsAGun.gd" type="Script" id=1]
 [ext_resource path="res://resources/items/weapons/this_is_a_gun.png" type="Texture" id=2]
+[ext_resource path="res://scripts/lighting/LightSource.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 15.0
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 5, 3 )
+extents = Vector2( 2, 1 )
 
 [node name="ThisIsAGun" type="RigidBody2D"]
+z_index = 1
 collision_layer = 8
 collision_mask = 2147483654
 script = ExtResource( 1 )
+lightStrength = 0.75
+lightSourcePath = NodePath("LightSource")
 itemTexture = NodePath("Sprite")
 detectorPath = NodePath("DetectionArea")
 weapon_name = "This is A Gun"
@@ -23,6 +27,7 @@ rate_of_fire = 0.5
 can_fire = true
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
 [node name="DetectionArea" type="Area2D" parent="."]
@@ -32,5 +37,13 @@ collision_layer = 16
 shape = SubResource( 1 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 4 )
+position = Vector2( 0, 2 )
 shape = SubResource( 2 )
+
+[node name="LightSource" type="Position2D" parent="." groups=[
+"Lights",
+]]
+position = Vector2( 0, 2 )
+script = ExtResource( 3 )
+radius = 12
+strength = 0.75
