@@ -1,0 +1,18 @@
+[gd_resource type="Environment" load_steps=2 format=2]
+
+[sub_resource type="ProceduralSky" id=1]
+
+[resource]
+background_mode = 2
+background_sky = SubResource( 1 )
+dof_blur_near_enabled = true
+dof_blur_near_distance = 1.0
+glow_enabled = true
+glow_intensity = 0.5
+glow_strength = 0.6
+glow_bloom = 0.6
+glow_blend_mode = 0
+glow_hdr_threshold = 0.65
+adjustment_enabled = true
+adjustment_contrast = 0.5
+adjustment_saturation = 8.0

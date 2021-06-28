@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/items/ThisIsAGun.gd" type="Script" id=1]
+[ext_resource path="res://resources/items/weapons/this_is_a_gun.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 15.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5, 3 )
+
+[node name="ThisIsAGun" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 2147483654
+script = ExtResource( 1 )
+itemTexture = NodePath("Sprite")
+detectorPath = NodePath("DetectionArea")
+weapon_name = "This is A Gun"
+weapon_description = "Lorem ipsum"
+damage = 15.0
+image = ExtResource( 2 )
+rate_of_fire = 0.5
+can_fire = true
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="Collider" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource( 1 )
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 4 )
+shape = SubResource( 2 )
