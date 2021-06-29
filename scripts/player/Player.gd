@@ -13,7 +13,8 @@ var was_on_floor : bool
 onready var sprites := $Sprites
 onready var head := $Sprites/HeadSprite
 onready var body := $Sprites/BodySprite
-onready var arms := $Sprites/ArmSprite
+onready var lArm := $Sprites/LeftArmSprite
+onready var rArm := $Sprites/RightArmSprite
 onready var legs := $Sprites/LegsSprite
 onready var item := $Sprites/ItemSprite
 
@@ -29,6 +30,12 @@ var can_pick = true
 
 func damage_entity(damage : float) -> void:
 	pass
+
+func _process(delta):
+	lArm.frame = 6
+	rArm.frame = 6
+	lArm.rotation = get_global_mouse_position().angle_to_point(lArm.position)
+	rArm.rotation = get_global_mouse_position().angle_to_point(rArm.position)
 
 func apply_gravity(delta : float) -> void:
 	if coyoteTimer.is_stopped():
@@ -57,7 +64,8 @@ func apply_movement(delta : float) -> void:
 		motion.x = clamp(motion.x, -MAX_SPEED, MAX_SPEED)
 		head.flip_h = x_input < 0
 		body.flip_h = x_input < 0
-		arms.flip_h = x_input < 0
+		lArm.flip_h = x_input < 0
+		rArm.flip_h = x_input < 0
 		legs.flip_h = x_input < 0
 		rotate_tween()
 

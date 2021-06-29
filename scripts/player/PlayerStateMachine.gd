@@ -6,6 +6,7 @@ func _ready() -> void:
 	add_state("jump")
 	add_state("fall")
 	add_state("fall_impact")
+	add_state("shoot")
 	call_deferred("set_state", states.idle)
 
 func _state_logic(delta : float) -> void:
@@ -48,6 +49,8 @@ func _get_transition(delta : float):
 			if !parent.is_on_floor():
 				if parent.motion.y < 0 and !parent.jumpBuffer.is_stopped():
 					return states.jump
+		states.shoot:
+			pass
 	return null
 
 func _enter_state(new_state, old_state) -> void:
@@ -75,6 +78,8 @@ func _enter_state(new_state, old_state) -> void:
 		states.fall_impact:
 			parent.debugFSM.set_text("fall_impact")
 			parent.anim.play("fall_impact")
+		states.shoot:
+			pass
 
 func _exit_state(old_state, new_state) -> void:
 	match old_state:
