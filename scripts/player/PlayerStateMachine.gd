@@ -58,6 +58,7 @@ func _enter_state(new_state, old_state) -> void:
 		states.idle:
 			parent.debugFSM.set_text("idle")
 			parent.anim.play('idle')
+			parent.armAnim.play('idle')
 			yield(parent.rotate, "tween_completed")
 			parent.rotate.interpolate_property(parent.sprites, "rotation",
 				parent.sprites.rotation, 0,
@@ -66,18 +67,22 @@ func _enter_state(new_state, old_state) -> void:
 		states.walk:
 			parent.debugFSM.set_text("walk")
 			parent.anim.play("walk")
+			parent.armAnim.play("walk")
 		states.jump:
 			parent.debugFSM.set_text("jumping")
 			parent.anim.play("jump")
+			parent.armAnim.play("jump")
 			parent.jumpBuffer.stop()
 		states.fall:
 			parent.debugFSM.set_text("fall")
 			parent.anim.play("fall")
+			parent.armAnim.play("fall")
 			if !parent.is_on_floor() and parent.was_on_floor:
 				parent.coyoteTimer.start()
 		states.fall_impact:
 			parent.debugFSM.set_text("fall_impact")
 			parent.anim.play("fall_impact")
+			parent.armAnim.play("fall_impact")
 		states.shoot:
 			pass
 

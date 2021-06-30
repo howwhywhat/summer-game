@@ -1,7 +1,7 @@
 extends Entity
 
 onready var rotate := $Rotate
-onready var player := $AnimationPlayer
+onready var armAnim := $ArmAnimation
 onready var anim := $AnimationPlayer
 onready var debugFSM := $DebugStateMachine
 
@@ -32,10 +32,11 @@ func damage_entity(damage : float) -> void:
 	pass
 
 func _process(delta):
-	lArm.frame = 6
-	rArm.frame = 6
-	lArm.rotation = get_global_mouse_position().angle_to_point(lArm.position)
-	rArm.rotation = get_global_mouse_position().angle_to_point(rArm.position)
+	armAnim.play("shoot")
+	lArm.rotation = get_angle_to(get_global_mouse_position())
+	rArm.rotation = get_angle_to(get_global_mouse_position())
+	print("mouse radians: ", get_angle_to(get_global_mouse_position()))
+	print("radians: ", lArm.rotation)
 
 func apply_gravity(delta : float) -> void:
 	if coyoteTimer.is_stopped():
