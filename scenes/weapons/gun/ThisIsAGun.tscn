@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/items/ThisIsAGun.gd" type="Script" id=1]
 [ext_resource path="res://resources/items/weapons/this_is_a_gun.png" type="Texture" id=2]
 [ext_resource path="res://scripts/lighting/LightSource.gd" type="Script" id=3]
+[ext_resource path="res://scenes/weapons/gun/9mm.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/weapons/WeaponSmoke.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 15.0
@@ -23,14 +25,18 @@ weapon_name = "This is A Gun"
 weapon_description = "Lorem ipsum"
 damage = 15.0
 image = ExtResource( 2 )
+weaponSmoke = ExtResource( 5 )
+bullet = ExtResource( 4 )
 rate_of_fire = 0.5
 can_fire = true
+knockbackIntensity = 0.5
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
 [node name="DetectionArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 16
 
 [node name="Collider" type="CollisionShape2D" parent="DetectionArea"]

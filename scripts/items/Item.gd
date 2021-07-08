@@ -41,6 +41,7 @@ func _unhandled_input(event) -> void:
 				player.can_pick = false
 	
 	if event.is_action_pressed("drop") and picked == true:
+		get_parent().dropped_item()
 		get_parent().remove_child(self)
 		mainScene.add_child(self)
 		global_position = player.global_position
